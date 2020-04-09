@@ -22,6 +22,7 @@ class ProductDetailActivity : BaseActivity() {
     private lateinit var sizeAdapter: SizeAdapter
     private lateinit var colorAdapter: ColorAdapter
     private var selectedSize: String = ""
+    private var selectedColor: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class ProductDetailActivity : BaseActivity() {
 
         try {
             selectedSize = getProductDetail().variants.get(0).size.toString()
+            selectedColor = getProductDetail().variants.get(0).color.toString()
             tvProductPrice.text = "Rs. " + getProductDetail().variants.get(0).price.toString()
         } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
@@ -77,14 +79,16 @@ class ProductDetailActivity : BaseActivity() {
                         Log.d("Size ", list.get(position))
                         sizeAdapter.selectSize(position)
 
+                        selectedSize = list.get(position)
 
                         for (i in 0 until getProductDetail().variants.size) {
                             if (list.get(position).toString() ==
                                 getProductDetail().variants.get(i).size.toString()
                             ) {
-                                selectedSize = list.get(position)
-                                tvProductPrice.text =
-                                    "Rs. " + getProductDetail().variants.get(i).price.toString()
+                                if (selectedColor == getProductDetail().variants.get(i).color) {
+                                    tvProductPrice.text =
+                                        "Rs. " + getProductDetail().variants.get(i).price.toString()
+                                }
                             }
                         }
                     }
@@ -124,7 +128,10 @@ class ProductDetailActivity : BaseActivity() {
             RecyclerItemClickListener(this,
                 rvColors, object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View, position: Int) {
+
                         colorAdapter.selectSize(position)
+
+                        selectedColor = listColor.get(position)
 
                         for (i in 0 until getProductDetail().variants.size) {
                             if (listColor.get(position) == getProductDetail().variants.get(i).color) {

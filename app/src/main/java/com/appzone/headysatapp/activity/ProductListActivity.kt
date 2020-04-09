@@ -25,6 +25,14 @@ class ProductListActivity : BaseActivity() {
 
         tvTitleProductCategoryList.text = getCategoryName()
 
+        if (getProductData().size == 0) {
+            tvEmptyProduct.visibility = View.VISIBLE
+            rvProduct.visibility = View.GONE
+        } else {
+            tvEmptyProduct.visibility = View.GONE
+            rvProduct.visibility = View.VISIBLE
+        }
+
         productAdapter = ProductAdapter(this, getProductData())
 
         val mLayoutManagerHorizonral = GridLayoutManager(this, 3)
