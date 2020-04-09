@@ -3,7 +3,6 @@ package com.appzone.headysatapp.activity
 import android.os.Bundle
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.appzone.headysatapp.R
 import com.appzone.headysatapp.adapter.ProductAdapter
 import com.appzone.headysatapp.config.BaseActivity
@@ -26,11 +25,11 @@ class ProductListActivity : BaseActivity() {
 
     private fun initView() {
 
-        setTitle(getString(R.string.product_activity_name))
+        tvTitleProductCategoryList.text = getCategoryName()
 
         productAdapter = ProductAdapter(this, getProductData())
 
-        val mLayoutManagerHorizonral = LinearLayoutManager(this)
+        val mLayoutManagerHorizonral = GridLayoutManager(this, 3)
         mLayoutManagerHorizonral.orientation = GridLayoutManager.VERTICAL
         rvProduct.layoutManager = mLayoutManagerHorizonral
         rvProduct.itemAnimator = DefaultItemAnimator()
@@ -43,6 +42,10 @@ class ProductListActivity : BaseActivity() {
         rvProduct.adapter = productAdapter
 
 
+    }
+
+    private fun getCategoryName(): String {
+        return getSerializableIntentValue(this, Constant.KEY_INTENT_CATEGORY_NAME) as String
     }
 
     /**

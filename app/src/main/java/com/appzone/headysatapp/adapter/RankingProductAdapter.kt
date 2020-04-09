@@ -10,14 +10,18 @@ import com.appzone.headysatapp.R
 import com.appzone.headysatapp.dataManager.response.ProductListModel
 import java.util.*
 
-class ProductAdapter(private var context: Context, productList: ArrayList<ProductListModel>) :
-    RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
+class RankingProductAdapter(
+    private var context: Context,
+    productList: ArrayList<ProductListModel>, viewCount: ArrayList<String>
+) :
+    RecyclerView.Adapter<RankingProductAdapter.MyViewHolder>() {
 
     private var productList: ArrayList<ProductListModel> = productList
+    private var viewCount = viewCount
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var tvProductName: AppCompatTextView = view.findViewById(R.id.tvProductName)
-        var tvProductPrice: AppCompatTextView = view.findViewById(R.id.tvProductPrice)
+        var tvProductInfo: AppCompatTextView = view.findViewById(R.id.tvProductInfo)
     }
 
     init {
@@ -26,22 +30,17 @@ class ProductAdapter(private var context: Context, productList: ArrayList<Produc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         var itemView: View =
-            LayoutInflater.from(parent!!.context).inflate(R.layout.row_product_list, parent, false)
+            LayoutInflater.from(parent!!.context)
+                .inflate(R.layout.row_ranking_product_list, parent, false)
 
         return MyViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var product: ProductListModel = productList.get(position)
+        var rankingProduct: ProductListModel = productList.get(position)
 
-        holder!!.tvProductName.text = product.name
-        try {
-            holder!!.tvProductPrice.text = "Rs. "+product.variants.get(0).price.toString()
-        } catch (e: IndexOutOfBoundsException) {
-            e.printStackTrace()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        holder!!.tvProductName.text = rankingProduct.name
+        holder!!.tvProductInfo.text = viewCount.get(position)
 
     }
 

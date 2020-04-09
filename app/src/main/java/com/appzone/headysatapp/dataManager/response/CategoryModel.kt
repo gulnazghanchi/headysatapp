@@ -41,7 +41,7 @@ data class RankingListModel(
 )
 
 data class RankingProductListModel(
-    @SerializedName("id") val id: String,
+    @SerializedName("id") val id: Int,
     @SerializedName("view_count") val view_count: Int,
     @SerializedName("order_count") val order_count: Int,
     @SerializedName("shares") val shares: Int

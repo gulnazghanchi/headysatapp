@@ -8,5 +8,6 @@ open class Constant {
         var KEY_BUNDLE = "bundle"
 
         var KEY_INTENT_PRODUCT_DETAILS = "key_product_list"
+        var KEY_INTENT_CATEGORY_NAME = "key_category_name"
     }
 }

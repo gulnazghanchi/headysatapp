@@ -22,5 +22,4 @@ fun AppCompatActivity.getSerializableIntentValue(
     } else {
         return ""
     }
-
 }

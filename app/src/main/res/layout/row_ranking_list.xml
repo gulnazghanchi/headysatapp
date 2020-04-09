@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llMainCategoryList"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="215dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/sample_cloth" />
-
     <TextView
-        android:id="@+id/tvCategoryName"
+        android:id="@+id/tvRankingName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -23,4 +17,9 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRankingProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
