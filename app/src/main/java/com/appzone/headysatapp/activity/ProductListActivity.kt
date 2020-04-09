@@ -1,14 +1,12 @@
 package com.appzone.headysatapp.activity
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.appzone.headysatapp.R
 import com.appzone.headysatapp.adapter.ProductAdapter
-import com.appzone.headysatapp.config.BaseActivity
-import com.appzone.headysatapp.config.Constant
-import com.appzone.headysatapp.config.ItemOffsetDecoration
-import com.appzone.headysatapp.config.getSerializableIntentValue
+import com.appzone.headysatapp.config.*
 import com.appzone.headysatapp.dataManager.response.ProductListModel
 import kotlinx.android.synthetic.main.activity_product_list.*
 
@@ -41,6 +39,27 @@ class ProductListActivity : BaseActivity() {
         )
         rvProduct.adapter = productAdapter
 
+        rvProduct.addOnItemTouchListener(
+            RecyclerItemClickListener(this,
+                rvProduct, object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View, position: Int) {
+                        var bundle = Bundle()
+                        bundle.putString(
+                            Constant.KEY_INTENT_PRODUCT_NAME, getProductData().get(position).name
+                        )
+                        bundle.putSerializable(
+                            Constant.KEY_INTENT_PRODUCT_DETAIL,
+                            getProductData().get(position)
+                        )
+                        launchWithData(ProductDetailActivity::class.java, bundle)
+                    }
+
+                    override fun onLongItemClick(view: View, position: Int) {
+
+                    }
+                })
+        )
+
 
     }
 
@@ -49,12 +68,12 @@ class ProductListActivity : BaseActivity() {
     }
 
     /**
-     * This method will fetch the gateway details from the another activity
+     * This method will fetch the product list details from the another activity
      */
     private fun getProductData(): ArrayList<ProductListModel> {
         return getSerializableIntentValue(
             this,
-            Constant.KEY_INTENT_PRODUCT_DETAILS
+            Constant.KEY_INTENT_PRODUCT_LIST
         ) as ArrayList<ProductListModel>
     }
 

@@ -57,7 +57,7 @@ class CategoryListActivity : BaseActivity() {
                             categoryModel.categories.get(position).name
                         )
                         bundle.putSerializable(
-                            Constant.KEY_INTENT_PRODUCT_DETAILS,
+                            Constant.KEY_INTENT_PRODUCT_LIST,
                             categoryModel.categories.get(position).products
                         )
                         launchWithData(ProductListActivity::class.java, bundle)
