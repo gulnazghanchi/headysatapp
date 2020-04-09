@@ -80,6 +80,5 @@ class CategoryListActivity : BaseActivity() {
             )
         )
         rvRanking.adapter = rankingAdapter
-
     }
 }

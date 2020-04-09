@@ -6,9 +6,11 @@
 
     <color name="white">#FFFFFF</color>
     <color name="green">#009688</color>
-    <color name="grey">#CEC3C3</color>
+    <color name="grey">#6F6666</color>
     <color name="red">#E91616</color>
     <color name="black">#000000</color>
     <color name="yellow">#FFCA28</color>
     <color name="blue">#448AFF</color>
+    <color name="golden">#F5B509</color>
+    <color name="silver">#C5C3C3</color>
 </resources>
